@@ -1,0 +1,43 @@
+let container = document.querySelector('.container');
+let parentList = document.createElement('ul');
+container.appendChild(parentList);
+
+function addingTask() {
+   const addBtn = document.getElementById('add-btn');
+
+   addBtn.addEventListener('click', () => {
+      let inputValue = document.getElementById('todo-value').value;
+
+      if (inputValue.trim() !== '') {
+         let listItem = document.createElement('li');
+         listItem.textContent = inputValue;
+
+         // Create a radio input for each task
+         const radioInput = document.createElement('input');
+         radioInput.type = 'radio';
+         radioInput.name = 'taskRadio'; // Set a common name for radio inputs to allow selection of only one
+
+         // Add event listener to handle radio selection and deletion of the task
+         radioInput.addEventListener('change', () => {
+            if (radioInput.checked) {
+               // Remove the parent li when the radio input is checked
+               listItem.remove();
+               console.log('Task completed and deleted:', inputValue);
+            }
+         });
+
+         // Append the radio input to the li
+         listItem.appendChild(radioInput);
+
+         // Append the li to the ul
+         parentList.appendChild(listItem);
+      } else {
+         console.log('Input is empty. Please enter a task.');
+      }
+   });
+}
+
+// Call the function to enable the functionality
+addingTask();
+
+
