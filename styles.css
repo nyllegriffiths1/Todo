@@ -14,7 +14,34 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
+}
 
+.sub-container2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sub-container2 a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.navbar-container li {
+    background-color: black;
+    cursor: pointer;
+}
+
+.navbar-container li:hover {
+    transform: scale(0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-container li:active {
+    background-color: red;
 }
 
 h1 {
@@ -43,7 +70,7 @@ li {
     margin: 0.313rem 0.313rem;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 li input {
