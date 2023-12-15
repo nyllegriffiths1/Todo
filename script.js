@@ -22,6 +22,7 @@ function addingTask() {
          radioInput.addEventListener('change', () => {
             if (radioInput.checked) {
                // Remove the parent li when the radio input is checked
+               storeTaskOnServer(inputValue);
                listItem.remove();
                console.log('Task completed and deleted:', inputValue);
             }
@@ -55,6 +56,8 @@ function addingTask() {
   
           radioInput.addEventListener('change', () => {
               if (radioInput.checked) {
+               // Send the task to the server
+                  storeTaskOnServer(inputValue);
                   listItem.remove();
                   console.log('Task completed and deleted:', inputValue);
               }
@@ -70,6 +73,21 @@ function addingTask() {
       }
   });
   
+}
+
+function storeTaskOnServer(task) {
+   // Replace the url with your server endoint
+   fetch('http://localhost:3000/tasks', {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ task }),
+   })
+
+   .then((response) => response.json())
+   .then((data) => console.log(data))
+   .catch((error) => console.error('Error storing task:', error));
 }
 
 // Call the function to enable the functionality
