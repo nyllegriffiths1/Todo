@@ -90,6 +90,31 @@ function storeTaskOnServer(task) {
    .catch((error) => console.error('Error storing task:', error));
 }
 
+function fetchTasks(category) {
+   fetch(`http://localhost:3000/tasks/${category}`)
+   .then((response) => response.json())
+   .then((data) => {
+      // display tasks based on the selected category
+      displayTasks(data);
+   })
+   .catch((error) => console.error('Error fetching tasks:', error));
+}
+
+function displayTasks(tasks) {
+   const historyList = document.getElementById('history-list');
+   // clear previous tasks
+   historyList.innerHTML = '';
+
+   tasks.forEach((task) => {
+      let historyItem = document.createElement('li');
+      historyItem.textContent = task;
+      historyList.appendChild(historyItem);
+   })
+}
+
+// The code above uses the FETCH API to send a POST request to your server when a task is completed/deleted
+
+
 // Call the function to enable the functionality
 addingTask();
 
